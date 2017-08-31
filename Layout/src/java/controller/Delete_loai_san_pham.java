@@ -8,7 +8,6 @@ package controller;
 import dbHelpers.ReadQuery;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author TienDinh
  */
-@WebServlet(name = "Read_loai_san_pham", urlPatterns = {"/read_lsp"})
-public class Read_loai_san_pham extends HttpServlet {
+@WebServlet(name = "Delete_loai_san_pham", urlPatterns = {"/Delete_loai_san_pham"})
+public class Delete_loai_san_pham extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +39,10 @@ public class Read_loai_san_pham extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Read_loai_san_pham</title>");            
+            out.println("<title>Servlet Delete_loai_san_pham</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Read_loai_san_pham at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Delete_loai_san_pham at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -76,22 +75,18 @@ public class Read_loai_san_pham extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //create a ReadQuery helper object
-       ReadQuery rq = new  ReadQuery();
-       //Get the HTML table from the ReadQuery object
-        ResultSet sp = rq.getAllSP();
-       //rq.doRead();
-       //String table = rq.getHTMLtable();
-       //pass execution control to read.jsp along with the table
-       //request.setAttribute("table", table);
-       request.setAttribute("sp", sp);
-       String url  = "/loai_san_pham.jsp";
-       String view = "views/v_loai_san_pham.jsp";
-       request.setAttribute("view",view);
-  
-       
-        RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-        dispatcher.forward(request, response);
+        
+        int ma_loai = Integer.parseInt( request.getParameter("ma_loai"));
+        
+        ReadQuery rq = new ReadQuery();
+        
+        rq.doDelete(ma_loai);
+        
+        String url ="read_lsp";
+        
+        RequestDispatcher dis = request.getRequestDispatcher(url);
+        dis.forward(request, response);
+        
     }
 
     /**

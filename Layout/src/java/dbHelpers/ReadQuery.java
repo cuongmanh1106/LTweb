@@ -73,65 +73,81 @@ public class ReadQuery {
         return this.results;
     }
     
+         
+     public void doAdd(m_loai_san_pham sp)
+    {
+        try {
+            String query = "insert into loai_san_pham(ten_loai,mo_ta,ma_loai_cha) values(?,?,?)";
+            com.mysql.jdbc.PreparedStatement ps = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(query);
+            
+            ps.setString(1,sp.getTen_loai());
+            ps.setString(2,sp.getMo_ta());
+            ps.setInt(3, sp.getMa_loai_cha());
+            
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ReadQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
      
-//    
-//     public void doAdd(loai_san_pham sp)
-//    {
-//        try {
-//            String query = "insert into loai_san_pham(ten_loai,mo_ta,ma_loai_cha) values(?,?,?)";
-//            com.mysql.jdbc.PreparedStatement ps = (com.mysql.jdbc.PreparedStatement) conn.prepareStatement(query);
-//            
-//            ps.setString(1,sp.getTen_loai());
-//            ps.setString(2,sp.getMo_ta());
-//            ps.setInt(3, sp.getMa_loai_cha());
-//            
-//            ps.executeUpdate();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ReadQuery.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        
-//    }
-//    
-//     
-//     
-//     
-//     public void doDelete(int ma_loai)
-//    {
-//        try {
-//            String Query = "delete from loai_san_pham where ma_loai=?";
-//            
-//            PreparedStatement ps = conn.prepareStatement(Query);
-//            
-//            ps.setInt(1, ma_loai);
-//            
-//            ps.executeUpdate();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ReadQuery.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
-//     
-//    public void doUpdate(loai_san_pham l)
-//    {
-//        try {
-//            String Query = "update loai_san_pham set ten_loai = ?, mo_ta = ?, ma_loai_cha=? where ma_loai=?";
-//            
-//            PreparedStatement ps = conn.prepareStatement(Query);
-//            
-//            ps.setString(1, l.getTen_loai());
-//            ps.setString(2, l.getMo_ta());
-//            ps.setInt(3, l.getMa_loai_cha());
-//            ps.setInt(4, l.getMa_loai());
-//            
-//            ps.executeUpdate();
-//            
-//            
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ReadQuery.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        
-//    }
-//    
-//    
+     
+     
+     public void doDelete(int ma_loai)
+    {
+        try {
+            String Query = "delete from loai_san_pham where ma_loai=?";
+            
+            PreparedStatement ps = conn.prepareStatement(Query);
+            
+            ps.setInt(1, ma_loai);
+            
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ReadQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+     
+    public ResultSet Doc_loai_san_pham_theo_ma_loai(int ma_loai)
+    {
+        try {
+            String Query = "select * from loai_san_pham where ma_loai=?";
+            
+            PreparedStatement ps = conn.prepareStatement(Query);
+            
+            ps.setInt(1, ma_loai);
+            
+            this.results=ps.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(ReadQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return this.results;
+    }
+     
+    public void doUpdate(m_loai_san_pham l)
+    {
+        try {
+            String Query = "update loai_san_pham set ten_loai = ?, mo_ta = ?, ma_loai_cha=? where ma_loai=?";
+            
+            PreparedStatement ps = conn.prepareStatement(Query);
+            
+            ps.setString(1, l.getTen_loai());
+            ps.setString(2, l.getMo_ta());
+            ps.setInt(3, l.getMa_loai_cha());
+            ps.setInt(4, l.getMa_loai());
+            
+            ps.executeUpdate();
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ReadQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    
 //     
 //    public String getHTMLtable(){
 //        String table="";

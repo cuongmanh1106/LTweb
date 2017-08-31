@@ -5,10 +5,8 @@
  */
 package controller;
 
-import dbHelpers.ReadQuery;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author TienDinh
  */
-@WebServlet(name = "Read_loai_san_pham", urlPatterns = {"/read_lsp"})
-public class Read_loai_san_pham extends HttpServlet {
+@WebServlet(name = "Add_form_loai_san_pham", urlPatterns = {"/add_lsp"})
+public class Add_form_loai_san_pham extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +38,10 @@ public class Read_loai_san_pham extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Read_loai_san_pham</title>");            
+            out.println("<title>Servlet Add_form_loai_san_pham</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Read_loai_san_pham at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Add_form_loai_san_pham at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -76,17 +74,9 @@ public class Read_loai_san_pham extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //create a ReadQuery helper object
-       ReadQuery rq = new  ReadQuery();
-       //Get the HTML table from the ReadQuery object
-        ResultSet sp = rq.getAllSP();
-       //rq.doRead();
-       //String table = rq.getHTMLtable();
-       //pass execution control to read.jsp along with the table
-       //request.setAttribute("table", table);
-       request.setAttribute("sp", sp);
-       String url  = "/loai_san_pham.jsp";
-       String view = "views/v_loai_san_pham.jsp";
+        
+       String url  = "/them_loai_san_pham.jsp";
+       String view = "views/v_them_loai_san_pham.jsp";
        request.setAttribute("view",view);
   
        

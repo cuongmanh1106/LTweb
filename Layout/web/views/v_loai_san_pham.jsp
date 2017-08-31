@@ -29,7 +29,15 @@
               <tr>
                 <td><%= l.getInt("ma_loai")%></td>    
                 <td><%= l.getString("ten_loai")%></td>      
-                <td><div class="hidden-sm hidden-xs action-buttons"> <a class="red" href="xoa_loai_nguoi_dung.php?ma_loai_nguoi_dung=<?php echo $l->ma_loai_nguoi_dung; ?>" onclick="return confirm('Bạn có muốn xóa dòng này') " > <img src="public/layout/resources/images/icons/cross_circle.png" /> </a> </div></td>
+                <td> 
+                   <a class="red" href="Delete_loai_san_pham?ma_loai=<%= l.getInt("ma_loai")%>" onclick="return confirm('Bạn có muốn xóa dòng này') " >
+                       <img src="public/images/icons/cross_circle.png" /> 
+                   </a>
+                   
+                   <a href="update_form?ma_loai=<%= l.getInt("ma_loai")%>" title="Edit" >
+                    <img src="public/images/icons/pencil.png" alt="Edit" />
+                   </a> 
+                </td>
               </tr>
               <%}%>
             </tbody>
@@ -37,8 +45,8 @@
         </div>
 
         <div class="col-sm-7">
-                <button class="btn btn-primary" onclick="window.location='them_loai_nguoi_dung.php?ma_loai_nguoi_dung=<?php echo $l->ma_loai_nguoi_dung; ?>'"> <i class="ace-icon glyphicon glyphicon-plus  align-top bigger-125"></i> Thêm loại người dùng </button>
-            <button class="btn" type="button" onClick="window.location='loai_nguoi_dung.php'"> <i class="ace-icon fa fa-undo bigger-110"></i> Quay lại </button>
+                <button class="btn btn-primary" onclick="window.location='add_lsp'"> <i class="ace-icon glyphicon glyphicon-plus  align-top bigger-125"></i> Thêm loại người dùng </button>
+            <button class="btn" type="button" onClick="window.location='read_lsp'"> <i class="ace-icon fa fa-undo bigger-110"></i> Quay lại </button>
         </div>
     </body>
 </html>

@@ -22,7 +22,6 @@
 <!-- end Content -->
 <div class="clear"></div>
 <!-- Start Notifications --> 
-<%@include  file ="notification.jsp" %> 
 <!-- End Notifications -->
 <div class="print"> 
 <%@include  file ="footer.jsp" %>
